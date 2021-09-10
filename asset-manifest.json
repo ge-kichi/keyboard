@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/l1ck0h/keyboard/static/css/main.3d085df8.chunk.css",
-    "main.js": "/l1ck0h/keyboard/static/js/main.e1f195f9.chunk.js",
-    "main.js.map": "/l1ck0h/keyboard/static/js/main.e1f195f9.chunk.js.map",
-    "runtime-main.js": "/l1ck0h/keyboard/static/js/runtime-main.4dd8a52b.js",
-    "runtime-main.js.map": "/l1ck0h/keyboard/static/js/runtime-main.4dd8a52b.js.map",
-    "static/js/2.f69408a8.chunk.js": "/l1ck0h/keyboard/static/js/2.f69408a8.chunk.js",
-    "static/js/2.f69408a8.chunk.js.map": "/l1ck0h/keyboard/static/js/2.f69408a8.chunk.js.map",
-    "static/js/3.17cf759f.chunk.js": "/l1ck0h/keyboard/static/js/3.17cf759f.chunk.js",
-    "static/js/3.17cf759f.chunk.js.map": "/l1ck0h/keyboard/static/js/3.17cf759f.chunk.js.map",
-    "index.html": "/l1ck0h/keyboard/index.html",
-    "static/css/main.3d085df8.chunk.css.map": "/l1ck0h/keyboard/static/css/main.3d085df8.chunk.css.map",
-    "static/js/2.f69408a8.chunk.js.LICENSE.txt": "/l1ck0h/keyboard/static/js/2.f69408a8.chunk.js.LICENSE.txt"
+    "main.css": "/keyboard/static/css/main.3d085df8.chunk.css",
+    "main.js": "/keyboard/static/js/main.99e03d3a.chunk.js",
+    "main.js.map": "/keyboard/static/js/main.99e03d3a.chunk.js.map",
+    "runtime-main.js": "/keyboard/static/js/runtime-main.1b2c66f3.js",
+    "runtime-main.js.map": "/keyboard/static/js/runtime-main.1b2c66f3.js.map",
+    "static/js/2.3cf25c70.chunk.js": "/keyboard/static/js/2.3cf25c70.chunk.js",
+    "static/js/2.3cf25c70.chunk.js.map": "/keyboard/static/js/2.3cf25c70.chunk.js.map",
+    "static/js/3.420dd9a2.chunk.js": "/keyboard/static/js/3.420dd9a2.chunk.js",
+    "static/js/3.420dd9a2.chunk.js.map": "/keyboard/static/js/3.420dd9a2.chunk.js.map",
+    "index.html": "/keyboard/index.html",
+    "static/css/main.3d085df8.chunk.css.map": "/keyboard/static/css/main.3d085df8.chunk.css.map",
+    "static/js/2.3cf25c70.chunk.js.LICENSE.txt": "/keyboard/static/js/2.3cf25c70.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4dd8a52b.js",
-    "static/js/2.f69408a8.chunk.js",
+    "static/js/runtime-main.1b2c66f3.js",
+    "static/js/2.3cf25c70.chunk.js",
     "static/css/main.3d085df8.chunk.css",
-    "static/js/main.e1f195f9.chunk.js"
+    "static/js/main.99e03d3a.chunk.js"
   ]
 }
