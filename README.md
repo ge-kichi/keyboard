@@ -7,6 +7,6 @@ See [Demo](https://l1ck0h.github.io/keyboard/).
 - [x] add github-icon
 - [ ] tablet
 - [ ] touch
-- [ ] dark mode / light mode
 - [ ] select sounds
+- [ ] dark mode / light mode
 - [ ] smartphone
