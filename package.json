@@ -1,31 +1,42 @@
 {
-  "name": "piano",
+  "name": "keyboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@tonejs/midi": "^2.0.27",
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.21",
+    "@types/ramda": "^0.27.44",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
+    "ramda": "^0.27.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-responsive": "^9.0.0-beta.4",
     "react-scripts": "4.0.3",
+    "tone": "^14.7.77",
     "typescript": "^4.4.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && gh-pages -d build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:eslint": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
+    "lint:prettier": "prettier --check --write './src/**/*.{css,js,jsx,ts,tsx}'",
+    "lint": "npm run lint:eslint && npm run lint:prettier"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "prettier"
     ]
   },
   "browserslist": {
@@ -39,5 +50,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "gh-pages": "^3.2.3",
+    "prettier": "^2.3.2"
+  },
+  "homepage": "https://l1ck0h.github.io/keyboard/"
 }

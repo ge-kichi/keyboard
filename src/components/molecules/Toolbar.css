@@ -1,0 +1,6 @@
+#toolbar {
+  display: flex;
+}
+#toolbar *:last-child {
+  margin-left: auto;
+}

@@ -1,0 +1,33 @@
+/* https://codesandbox.io/s/tonejs-midi-vfwdz?file=/src/styles.css */
+#fileDrop {
+  position: relative;
+  height: 100px;
+  border: 2px dashed black;
+  color: black;
+  margin: 20px auto 0 auto;
+}
+
+#fileDrop.hover {
+  background-color: black;
+  color: white;
+}
+
+#fileDrop input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  left: 0px;
+  top: 0px;
+}
+
+#fileDrop #text {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  left: 0px;
+  top: 50%;
+  transform: translate(0, -50%);
+  text-align: center;
+}

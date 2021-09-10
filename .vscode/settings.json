@@ -1,0 +1,8 @@
+// https://qiita.com/h-yoshikawa44/items/14a114da903fb0eff886
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}
