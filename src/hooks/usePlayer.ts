@@ -1,13 +1,15 @@
 import { useState, useContext } from "react";
 import { Part, Transport } from "tone";
 import { Midi } from "@tonejs/midi";
-import { note_to_midi, startTimer } from "../modules";
+import { note_to_midi } from "../modules";
 import { StoreContext } from "../store";
 
 const usePlayer = () => {
   const { state, dispatch } = useContext(StoreContext);
   const [isMute, setMute] = useState(false);
   const sampler = state.sampler!;
+  const playbackTime = () =>
+    window.setInterval(() => dispatch({ type: "COUNT_TIME" }), 1000);
 
   const dropFile = (e: any) => {
     const [file] = e.target.files;
@@ -35,17 +37,23 @@ const usePlayer = () => {
       });
       dispatch({
         type: "LOADED_MIDI",
-        payload: { duration: Math.ceil(midi.duration) },
+        payload: {
+          duration: Math.ceil(midi.duration),
+          playbackTimeID: playbackTime(),
+        },
       });
-      startTimer(() => dispatch({ type: "COUNT_TIME" }));
     };
     reader.readAsArrayBuffer(file);
   };
 
   const PlayPause = () => {
     if (state.toneState !== "started") {
-      dispatch({ type: "PLAY_MIDI" });
-      startTimer(() => dispatch({ type: "COUNT_TIME" }));
+      dispatch({
+        type: "PLAY_MIDI",
+        payload: {
+          playbackTimeID: playbackTime(),
+        },
+      });
     } else {
       dispatch({ type: "PAUSE_MIDI" });
     }

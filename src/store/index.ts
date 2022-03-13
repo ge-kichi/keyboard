@@ -1,6 +1,5 @@
 import { createContext, Dispatch } from "react";
 import { PlaybackState, Sampler, Transport } from "tone";
-import { stopTimer } from "../modules";
 
 export type State = {
   time: number;
@@ -9,18 +8,19 @@ export type State = {
   isLoaded: boolean;
   sampler: Sampler | undefined;
   disabled: boolean;
+  playbackTimeID: number;
 };
 
 export type Action =
-  | { type: "SET_TIME"; time: number }
-  | { type: "COUNT_TIME" }
-  | { type: "SET_DURATION"; duration: number }
-  | { type: "PLAY_MIDI" }
-  | { type: "PAUSE_MIDI" }
-  | { type: "STOP_MIDI" }
   | { type: "LOADED_SAMPLER"; payload: { sampler: Sampler; isLoaded: boolean } }
-  | { type: "LOADED_MIDI"; payload: { duration: number } }
-  | { type: "SET_DISABLED"; disabled: boolean };
+  | {
+      type: "LOADED_MIDI";
+      payload: { duration: number; playbackTimeID: number };
+    }
+  | { type: "COUNT_TIME" }
+  | { type: "PLAY_MIDI"; payload: { playbackTimeID: number } }
+  | { type: "PAUSE_MIDI" }
+  | { type: "STOP_MIDI" };
 
 export const StoreContext = createContext(
   {} as { state: State; dispatch: Dispatch<Action> }
@@ -33,52 +33,11 @@ export const initialState: State = {
   isLoaded: false,
   sampler: undefined,
   disabled: true,
+  playbackTimeID: 0,
 };
 
 export const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "SET_TIME":
-      return {
-        ...state,
-        time: action.time,
-      };
-    case "COUNT_TIME":
-      if (state.duration > state.time) {
-        return {
-          ...state,
-          time: state.time + 1,
-        };
-      } else {
-        stopTimer();
-        return {
-          ...state,
-          time: 0,
-          toneState: Transport.stop().state,
-        };
-      }
-    case "SET_DURATION":
-      return {
-        ...state,
-        duration: action.duration,
-      };
-    case "PLAY_MIDI":
-      return {
-        ...state,
-        toneState: Transport.start().state,
-      };
-    case "PAUSE_MIDI":
-      stopTimer();
-      return {
-        ...state,
-        toneState: Transport.pause().state,
-      };
-    case "STOP_MIDI":
-      stopTimer();
-      return {
-        ...state,
-        time: 0,
-        toneState: Transport.stop().state,
-      };
     case "LOADED_SAMPLER": {
       const payload = action.payload;
       return {
@@ -95,14 +54,48 @@ export const reducer = (state: State, action: Action) => {
         time: 0,
         disabled: false,
         toneState: Transport.start().state,
+        playbackTimeID: payload.playbackTimeID,
       };
     }
-    case "SET_DISABLED":
+    case "COUNT_TIME": {
+      if (state.duration > state.time) {
+        return {
+          ...state,
+          time: state.time + 1,
+        };
+      } else {
+        window.clearInterval(state.playbackTimeID);
+        return {
+          ...state,
+          time: 0,
+          toneState: Transport.stop().state,
+          playbackTimeID: 0,
+        };
+      }
+    }
+    case "PLAY_MIDI": {
       return {
         ...state,
-        disabled: action.disabled,
+        toneState: Transport.start().state,
+        playbackTimeID: action.payload.playbackTimeID,
       };
-    default:
-      return state;
+    }
+    case "PAUSE_MIDI": {
+      window.clearInterval(state.playbackTimeID);
+      return {
+        ...state,
+        toneState: Transport.pause().state,
+        playbackTimeID: 0,
+      };
+    }
+    case "STOP_MIDI": {
+      window.clearInterval(state.playbackTimeID);
+      return {
+        ...state,
+        time: 0,
+        toneState: Transport.stop().state,
+        playbackTimeID: 0,
+      };
+    }
   }
 };
