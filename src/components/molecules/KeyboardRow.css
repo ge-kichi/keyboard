@@ -1,9 +1,0 @@
-.keyboard-row {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.keyboard-row * {
-  box-sizing: border-box;
-  user-select: none;
-}

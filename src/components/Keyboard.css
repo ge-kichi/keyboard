@@ -1,5 +1,13 @@
-/* https://web-breeze.net/web-piano-html5audio/ */
-.keyboard-key {
+:root {
+  --width: 1025px;
+}
+.Keyboard {
+  display: "flex";
+  flex-wrap: "wrap";
+  box-sizing: "border-box";
+  user-select: "none";
+}
+.Keyboard-key {
   position: relative;
   --white-key-num: 26;
   --white-key-width: calc(var(--width) / var(--white-key-num) / 2);
@@ -7,13 +15,13 @@
   --white-key-height: 200px;
   --black-key-height: calc(var(--white-key-height) * 19 / 29);
 }
-@media screen and (max-width: 1024px) {
-  .keyboard-key {
+/* @media screen and (max-width: 1024px) {
+  .base-key {
     --white-key-width: calc(var(--width) / var(--white-key-num));
   }
-}
+} */
 
-.white-key {
+.Keyboard-key__white {
   width: var(--white-key-width);
   height: var(--white-key-height);
   background-color: white;
@@ -25,14 +33,14 @@
   color: black;
 }
 
-.white-key.pressing {
+.Keyboard-key__white.pressing {
   border-bottom: solid rgb(230, 230, 230) 5px;
   border-left: solid rgb(109, 109, 76) 2px;
   border-right: solid rgb(109, 109, 76) 2px;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
 }
 
-.black-key {
+.Keyboard-key__black {
   position: absolute;
   width: var(--black-key-width);
   height: var(--black-key-height);
@@ -48,13 +56,13 @@
   text-align: center;
 }
 
-.black-key.pressing {
+.Keyboard-key__black.pressing {
   border-bottom: solid rgb(54, 54, 54) 4px;
   box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.4);
   background: linear-gradient(to bottom, rgb(24, 24, 24) 100%, white);
 }
 
-.key-label {
+.Keyboard-key__label {
   position: absolute;
   display: block;
   bottom: 30px;

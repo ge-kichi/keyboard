@@ -1,17 +1,14 @@
 # keyboard
 
-See [Demo](https://l1ck0h.github.io/keyboard/).
+See [Page](https://l1ck0h.github.io/keyboard/).
 
 ## TODO
 
-- [ ] tablet(PWD)
-- [ ] touchEvent
-- [ ] select number of keys
-- [ ] dark mode / light mode
+- [ ] touchEvent(touchmove)
 - [ ] select sounds
-- [ ] smartphone(PWD)
-- [x] add github-icon
 
-## [ChangeLog](https://github.com/l1ck0h/keyboard/releases)
+## References and Inspiration
 
-### [v0.1.0](https://github.com/l1ck0h/keyboard/tree/v0.1.0)
+- [WEB Piano – HTML5 Audio でピアノを作る – 微風 on the web…](https://web-breeze.net/web-piano-html5audio/)
+- [Tonejs Midi](https://tonejs.github.io/Midi/)
+- [JavaScript：配列内の要素を指定した要素数毎に分割する方法 - NxWorld](https://www.nxworld.net/js-array-chunk.html)

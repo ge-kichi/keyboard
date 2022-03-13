@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "spectre.css/dist/spectre.min.css";
+import "@l1ck0h/every-layout.css/every-layout.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
