@@ -69,8 +69,8 @@ const usePlayer = () => {
 
   return {
     state: {
-      ...state,
       isMute,
+      ...state,
     },
     handlers: {
       dropFile,
