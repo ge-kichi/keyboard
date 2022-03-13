@@ -14,18 +14,9 @@ function App() {
     <div className="App">
       {state.isLoaded ? (
         <StoreContext.Provider value={{ state, dispatch }}>
-          {/* <div className="el-box">
-            <div className="el-center">
-              <div className="el-stack app-util-width:100%">
-                <TheMenu />
-                <TheKeyboard />
-                <TheFooter />
-              </div>
-            </div>
-          </div> */}
           <div className="el-cover">
             <TheMenu />
-            <div className="el-cover__centered" style={{ margin: "auto" }}>
+            <div className="el-cover__centered app-util-margin:auto">
               <TheKeyboard />
             </div>
             <TheFooter />
