@@ -2,10 +2,10 @@
   --width: 1025px;
 }
 .Keyboard {
-  display: "flex";
-  flex-wrap: "wrap";
-  box-sizing: "border-box";
-  user-select: "none";
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  user-select: none;
 }
 .Keyboard-key {
   position: relative;
