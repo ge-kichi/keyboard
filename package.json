@@ -32,7 +32,8 @@
     "eject": "react-scripts eject",
     "lint:eslint": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
     "lint:prettier": "prettier --check --write './src/**/*.{css,js,jsx,ts,tsx}'",
-    "lint": "npm run lint:eslint && npm run lint:prettier"
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "preinstall": "npm-force-resolutions"
   },
   "eslintConfig": {
     "extends": [
@@ -57,7 +58,11 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "gh-pages": "^3.2.3",
+    "npm-force-resolutions": "^0.0.10",
     "prettier": "^2.4.1"
   },
-  "homepage": "https://l1ck0h.github.io/keyboard/"
+  "homepage": "https://l1ck0h.github.io/keyboard/",
+  "resolutions": {
+    "postcss-custom-properties": "^12.1.4"
+  }
 }
