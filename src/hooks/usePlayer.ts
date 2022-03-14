@@ -27,11 +27,11 @@ const usePlayer = () => {
           );
           const keyNumElem = document.querySelector(
             `[data-key-num="${note_to_midi(note.name)}"]`
-          )!;
-          keyNumElem.classList.add("Keyboard__key--pressing");
+          )!.classList;
+          keyNumElem.add("Keyboard__key--pressing");
           setTimeout(
-            () => keyNumElem.classList.remove("Keyboard__key--pressing"),
-            note.duration * 900
+            () => keyNumElem.remove("Keyboard__key--pressing"),
+            note.duration * 1000
           );
         }, track.notes).start();
       });
@@ -46,24 +46,24 @@ const usePlayer = () => {
     reader.readAsArrayBuffer(file);
   };
 
-  const PlayPause = () => {
-    if (state.toneState !== "started") {
-      dispatch({
-        type: "PLAY_MIDI",
-        payload: {
-          playbackTimeID: playbackTime(),
-        },
-      });
-    } else {
-      dispatch({ type: "PAUSE_MIDI" });
-    }
-  };
+  const PlayPause = () =>
+    dispatch(
+      state.toneState !== "started"
+        ? {
+            type: "PLAY_MIDI",
+            payload: {
+              playbackTimeID: playbackTime(),
+            },
+          }
+        : { type: "PAUSE_MIDI" }
+    );
 
   const stop = () => dispatch({ type: "STOP_MIDI" });
 
   const toggleVolume = () => {
     if (!sampler) return;
-    sampler.volume.value = isMute ? 0 : sampler.volume.minValue;
+    const volume = sampler.volume;
+    volume.value = !isMute ? volume.minValue : 0;
     setMute(!isMute);
   };
 

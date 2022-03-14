@@ -40,6 +40,7 @@ const useSampler = (dispatch: React.Dispatch<Action>) => {
       },
       baseUrl: process.env.PUBLIC_URL + "/audio/",
       release: 1,
+      curve: "exponential",
       onload: () =>
         dispatch({
           type: "LOADED_SAMPLER",
