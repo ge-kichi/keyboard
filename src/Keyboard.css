@@ -3,20 +3,22 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   user-select: none;
+  --key-white-num: 26;
+  --key-white-width: calc(
+    var(--keyboard-width, 1024px) / var(--key-white-num) / 2
+  );
+  --key-white-height: 200px;
+  --key-black-width: calc(var(--key-white-width) * 3 / 4);
+  --key-black-height: calc(var(--key-white-height) * 19 / 29);
 }
+
 .Keyboard__key-container {
   position: relative;
-  --width: 1024px;
-  --white-key-num: 26;
-  --white-key-width: calc(var(--width) / var(--white-key-num) / 2);
-  --black-key-width: calc(var(--white-key-width) * 3 / 4);
-  --white-key-height: 200px;
-  --black-key-height: calc(var(--white-key-height) * 19 / 29);
 }
 
 .Keyboard__key--white {
-  width: var(--white-key-width);
-  height: var(--white-key-height);
+  width: var(--key-white-width);
+  height: var(--key-white-height);
   background-color: white;
   z-index: 1;
   border: solid 1px black;
@@ -36,10 +38,10 @@
 
 .Keyboard__key--black {
   position: absolute;
-  width: var(--black-key-width);
-  height: var(--black-key-height);
+  width: var(--key-black-width);
+  height: var(--key-black-height);
   background: linear-gradient(to bottom, rgb(24, 24, 24) 97%, white);
-  margin-left: calc(var(--black-key-width) / -2);
+  margin-left: calc(var(--key-black-width) / -2);
   z-index: 2;
   border-bottom: solid rgb(54, 54, 54) 10px;
   border-left: solid black 3px;

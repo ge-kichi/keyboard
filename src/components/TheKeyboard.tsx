@@ -21,21 +21,19 @@ function TheKeyboard() {
 
   return (
     <div
-      className="the-keyboard"
+      className="the-keyboard Keyboard"
       onPointerDown={pressKey}
       onPointerUp={releaseKey}
     >
-      <div className="Keyboard app-util-width:100%">
-        {midiNotes.map((midiNote: number, i: number) => {
-          return (
-            <BaseKey
-              key={i}
-              midiNote={midiNote}
-              isBlackKey={isBlackKey(midiNote)}
-            />
-          );
-        })}
-      </div>
+      {midiNotes.map((midiNote: number, i: number) => {
+        return (
+          <BaseKey
+            key={i}
+            midiNote={midiNote}
+            isBlackKey={isBlackKey(midiNote)}
+          />
+        );
+      })}
     </div>
   );
 }
