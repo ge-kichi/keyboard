@@ -2,7 +2,7 @@ import TheKeyboard from "../components/TheKeyboard";
 
 export default {
   component: TheKeyboard,
-  title: "Keyboard",
+  title: "TheKeyboard",
 };
 
 const Template = (args) => <TheKeyboard {...args} />;
