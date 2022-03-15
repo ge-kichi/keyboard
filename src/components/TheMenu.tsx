@@ -7,11 +7,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import BaseIconButton from "./BaseIconButton";
 import BaseTime from "./BaseTime";
-import { usePlayer } from "../hooks";
+import { usePlayer as usePlayerDI } from "../hooks";
 
-function TheMenu() {
+function TheMenu({ usePlayer = usePlayerDI }) {
   const { state, handlers } = usePlayer();
-
   return (
     <div className="the-menu">
       <div className="the-menu__filedrop form-group">

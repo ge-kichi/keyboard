@@ -8,42 +8,29 @@ const useKeyboard = () => {
   const _pressKey = (e: any) => {
     if (!state.sampler) return;
     const target = e.target;
-    if (target.dataset.keyNum) {
-      target.classList.add("Keyboard__key--pressing");
-      state.sampler.triggerAttack(midi_to_note(target.dataset.keyNum));
-    }
+    target.classList.add("the-keyboard__key--pressing");
+    state.sampler.triggerAttack(midi_to_note(target.dataset.keyNum));
   };
 
   const _releaseKey = (e: any) => {
     if (!state.sampler) return;
     const target = e.target;
-    target.classList.remove("Keyboard__key--pressing");
+    target.classList.remove("the-keyboard__key--pressing");
     state.sampler.triggerRelease(midi_to_note(target.dataset.keyNum));
   };
-
-  const _overKey = (e: any) => {
-    const elements = Array.from(document.querySelectorAll(":active"));
-    if (elements.length !== 0) _pressKey(e);
-  };
-
-  const _outKey = (e: any) => _releaseKey(e);
-
-  const _touchMoveKey = (e: any) => e.preventDefault();
 
   const pressKey = (e: any) => {
     _pressKey(e);
     const currentTarget = e.currentTarget;
-    currentTarget.addEventListener("pointerover", _overKey);
-    currentTarget.addEventListener("pointerout", _outKey);
-    currentTarget.addEventListener("touchmove", _touchMoveKey);
+    currentTarget.addEventListener("pointerover", _pressKey);
+    currentTarget.addEventListener("pointerout", _releaseKey);
   };
 
   const releaseKey = (e: any) => {
     _releaseKey(e);
     const currentTarget = e.currentTarget;
-    currentTarget.removeEventListener("pointerover", _overKey);
-    currentTarget.removeEventListener("pointerout", _outKey);
-    currentTarget.removeEventListener("touchmove", _touchMoveKey);
+    currentTarget.removeEventListener("pointerover", _pressKey);
+    currentTarget.removeEventListener("pointerout", _releaseKey);
   };
 
   return {

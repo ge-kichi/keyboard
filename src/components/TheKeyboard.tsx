@@ -1,8 +1,10 @@
 import { range } from "ramda";
-import BaseKey from "./BaseKey";
-import { useKeyboard } from "../hooks";
+import { Frequency } from "tone";
+import { useKeyboard as useKeyboardDI } from "../hooks";
+import "./TheKeyboard.css";
 
 const midiNotes = range(21, 109);
+const toNote = (midiNote: number) => Frequency(midiNote, "midi").toNote();
 const isBlackKey = (midiNote: number) => {
   switch ((midiNote - 20) % 12) {
     case 0:
@@ -16,22 +18,31 @@ const isBlackKey = (midiNote: number) => {
   }
 };
 
-function TheKeyboard() {
+function TheKeyboard({ useKeyboard = useKeyboardDI }) {
   const { pressKey, releaseKey } = useKeyboard();
-
   return (
     <div
-      className="the-keyboard Keyboard"
+      className="the-keyboard"
       onPointerDown={pressKey}
       onPointerUp={releaseKey}
     >
       {midiNotes.map((midiNote: number, i: number) => {
+        const _note = toNote(midiNote);
         return (
-          <BaseKey
-            key={i}
-            midiNote={midiNote}
-            isBlackKey={isBlackKey(midiNote)}
-          />
+          <div className="the-keyboard__key-container">
+            <div
+              className={
+                !isBlackKey(midiNote)
+                  ? "the-keyboard__key--white"
+                  : "the-keyboard__key--black"
+              }
+              data-key-num={midiNote}
+            >
+              <span className="the-keyboard__label">
+                {/C[1-8]/.test(_note) ? _note : ""}
+              </span>
+            </div>
+          </div>
         );
       })}
     </div>
