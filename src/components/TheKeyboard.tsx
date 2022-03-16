@@ -55,7 +55,7 @@ function TheKeyboard({ useSampler = useSamplerDI }) {
       {midiNotes.map((midiNote: number, i: number) => {
         const _note = toNote(midiNote);
         return (
-          <div className="the-keyboard__key-container">
+          <div className="the-keyboard__key-container" key={i}>
             <div
               className={
                 "the-keyboard__key" +
