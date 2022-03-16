@@ -1,3 +1,3 @@
-export { default as useKeyboard } from "./useKeyboard";
-export { default as usePlayer } from "./usePlayer";
+export { default as useLoadingSampler } from "./useLoadingSampler";
 export { default as useSampler } from "./useSampler";
+export { default as usePlayer } from "./usePlayer";

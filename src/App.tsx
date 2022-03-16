@@ -3,13 +3,13 @@ import TheMenu from "./components/TheMenu";
 import TheKeyboard from "./components/TheKeyboard";
 import TheFooter from "./components/TheFooter";
 import TheLoading from "./components/TheLoading";
-import { useSampler } from "./hooks";
+import { useLoadingSampler } from "./hooks";
 import { initialState, reducer, StoreContext } from "./store";
 import "./App.css";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  useSampler(dispatch);
+  useLoadingSampler(dispatch);
   return (
     <div className="App">
       {state.isLoaded ? (

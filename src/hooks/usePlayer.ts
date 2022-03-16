@@ -1,13 +1,14 @@
 import { useState, useContext } from "react";
-import { Part, Transport } from "tone";
+import { Frequency, Part, Transport } from "tone";
 import { Midi } from "@tonejs/midi";
-import { note_to_midi } from "../modules";
 import { StoreContext } from "../store";
+
+const toMIDI = (note: string) => Frequency(note).toMidi();
 
 const usePlayer = () => {
   const { state, dispatch } = useContext(StoreContext);
   const [isMute, setMute] = useState(false);
-  const sampler = state.sampler!;
+  const sampler = state.sampler;
   const playbackTime = () =>
     window.setInterval(() => dispatch({ type: "COUNT_TIME" }), 1000);
 
@@ -19,18 +20,18 @@ const usePlayer = () => {
       Transport.cancel();
       midi.tracks.forEach((track) => {
         new Part((time, note) => {
-          sampler.triggerAttackRelease(
+          sampler?.triggerAttackRelease(
             note.name,
             note.duration,
             time,
             note.velocity
           );
           const keyNumElem = document.querySelector(
-            `[data-key-num="${note_to_midi(note.name)}"]`
+            `[data-key-num="${toMIDI(note.name)}"]`
           )!.classList;
-          keyNumElem.add("Keyboard__key--pressing");
+          keyNumElem.add("--pressing");
           setTimeout(
-            () => keyNumElem.remove("Keyboard__key--pressing"),
+            () => keyNumElem.remove("--pressing"),
             note.duration * 1000
           );
         }, track.notes).start();

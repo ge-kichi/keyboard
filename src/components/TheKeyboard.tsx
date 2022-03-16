@@ -1,6 +1,6 @@
 import { range } from "ramda";
 import { Frequency } from "tone";
-import { useKeyboard as useKeyboardDI } from "../hooks";
+import { useSampler as useSamplerDI } from "../hooks";
 import "./TheKeyboard.css";
 
 const midiNotes = range(21, 109);
@@ -18,8 +18,34 @@ const isBlackKey = (midiNote: number) => {
   }
 };
 
-function TheKeyboard({ useKeyboard = useKeyboardDI }) {
-  const { pressKey, releaseKey } = useKeyboard();
+function TheKeyboard({ useSampler = useSamplerDI }) {
+  const sampler = useSampler();
+
+  const _pressKey = (e: any) => {
+    const target = e.target;
+    target.classList.add("--pressing");
+    sampler?.triggerAttack(toNote(target.dataset.keyNum));
+  };
+
+  const _releaseKey = (e: any) => {
+    const target = e.target;
+    target.classList.remove("--pressing");
+    sampler?.triggerRelease(toNote(target.dataset.keyNum));
+  };
+
+  const pressKey = (e: any) => {
+    _pressKey(e);
+    const currentTarget = e.currentTarget;
+    currentTarget.addEventListener("pointerover", _pressKey);
+    currentTarget.addEventListener("pointerout", _releaseKey);
+  };
+  const releaseKey = (e: any) => {
+    _releaseKey(e);
+    const currentTarget = e.currentTarget;
+    currentTarget.removeEventListener("pointerover", _pressKey);
+    currentTarget.removeEventListener("pointerout", _releaseKey);
+  };
+
   return (
     <div
       className="the-keyboard"
@@ -32,9 +58,9 @@ function TheKeyboard({ useKeyboard = useKeyboardDI }) {
           <div className="the-keyboard__key-container">
             <div
               className={
-                !isBlackKey(midiNote)
-                  ? "the-keyboard__key--white"
-                  : "the-keyboard__key--black"
+                "the-keyboard__key" +
+                " " +
+                (!isBlackKey(midiNote) ? "--white" : "--black")
               }
               data-key-num={midiNote}
             >

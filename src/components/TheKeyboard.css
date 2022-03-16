@@ -3,22 +3,22 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   user-select: none;
-  --key-white-num: 26;
-  --key-white-width: calc(
-    var(--keyboard-width, 1024px) / var(--key-white-num) / 2
+  --white-key-num: 26;
+  --white-key-width: calc(
+    var(--keyboard-width, 1113px) / var(--white-key-num) / 2
   );
-  --key-white-height: 200px;
-  --key-black-width: calc(var(--key-white-width) * 3 / 4);
-  --key-black-height: calc(var(--key-white-height) * 19 / 29);
+  --white-key-height: 200px;
+  --black-key-width: calc(var(--white-key-width) * 3 / 4);
+  --black-key-height: calc(var(--white-key-height) * 19 / 29);
 }
 
 .the-keyboard__key-container {
   position: relative;
 }
 
-.the-keyboard__key--white {
-  width: var(--key-white-width);
-  height: var(--key-white-height);
+.the-keyboard__key.--white {
+  width: var(--white-key-width);
+  height: var(--white-key-height);
   background-color: white;
   z-index: 1;
   border: solid 1px black;
@@ -29,19 +29,13 @@
   cursor: pointer;
 }
 
-.the-keyboard__key--white.the-keyboard__key--pressing {
-  border-bottom: solid rgb(230, 230, 230) 5px;
-  border-left: solid rgb(109, 109, 76) 2px;
-  border-right: solid rgb(109, 109, 76) 2px;
-  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
-}
-
-.the-keyboard__key--black {
+.the-keyboard__key.--black {
   position: absolute;
-  width: var(--key-black-width);
-  height: var(--key-black-height);
+  text-align: center;
+  width: var(--black-key-width);
+  height: var(--black-key-height);
   background: linear-gradient(to bottom, rgb(24, 24, 24) 97%, white);
-  margin-left: calc(var(--key-black-width) / -2);
+  margin-left: calc(var(--black-key-width) / -2);
   z-index: 2;
   border-bottom: solid rgb(54, 54, 54) 10px;
   border-left: solid black 3px;
@@ -49,14 +43,28 @@
   box-shadow: 5px 1px 2px 0 rgba(0, 0, 0, 0.4);
   transition: 100ms;
   color: white;
-  text-align: center;
   cursor: pointer;
 }
 
-.the-keyboard__key--black.the-keyboard__key--pressing {
-  border-bottom: solid rgb(54, 54, 54) 4px;
-  box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.4);
-  background: linear-gradient(to bottom, rgb(24, 24, 24) 100%, white);
+.the-keyboard__key.--pressing {
+  border-bottom: var(--botder-bottom);
+  border-left: var(--botder-left);
+  border-right: var(--botder-right);
+  box-shadow: var(--box-shadow);
+  background: var(--background);
+}
+
+.the-keyboard__key.--white.--pressing {
+  --botder-bottom: solid rgb(230, 230, 230) 5px;
+  --botder-left: solid rgb(109, 109, 76) 2px;
+  --botder-right: solid rgb(109, 109, 76) 2px;
+  --box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.the-keyboard__key.--black.--pressing {
+  --botder-bottom: solid rgb(54, 54, 54) 4px;
+  --box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --background: linear-gradient(to bottom, rgb(24, 24, 24) 100%, white);
 }
 
 .the-keyboard__label {
