@@ -3,9 +3,7 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   user-select: none;
-  --keyboard-width: 1264px;
-  --white-key-num: 52;
-  --white-key-width: calc(var(--keyboard-width) / var(--white-key-num));
+  --white-key-width: 10mm;
   --white-key-height: 200px;
   --black-key-width: calc(var(--white-key-width) * 3 / 4);
   --black-key-height: calc(var(--white-key-height) * 19 / 29);
@@ -13,6 +11,16 @@
 
 .the-keyboard * {
   box-sizing: border-box;
+  display: inherit;
+}
+
+.the-keyboard__row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.the-keyboard__row:last-of-type {
+  margin-bottom: var(--ms1);
 }
 
 .the-keyboard__key-container {

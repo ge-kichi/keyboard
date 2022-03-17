@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { StoreContext } from "../store";
 
-const useSampler = () => {
+const useSynth = () => {
   const { state } = useContext(StoreContext);
-  return state.sampler;
+  return state.synth;
 };
 
-export default useSampler;
+export default useSynth;

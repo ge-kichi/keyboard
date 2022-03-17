@@ -8,5 +8,5 @@ export default {
 const Template = (args) => <TheKeyboard {...args} />;
 export const Default = Template.bind({});
 Default.args = {
-  useSampler: () => undefined,
+  useSynth: () => undefined,
 };

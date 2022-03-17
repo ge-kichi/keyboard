@@ -16,7 +16,7 @@ function App() {
         <StoreContext.Provider value={{ state, dispatch }}>
           <div className="el-cover">
             <TheMenu />
-            <div className="el-cover__centered app-util-margin:auto">
+            <div className="el-cover__centered" style={{ overflowX: "auto" }}>
               <TheKeyboard />
             </div>
             <TheFooter />

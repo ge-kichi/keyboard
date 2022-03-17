@@ -1,3 +1,3 @@
-export { default as useLoadingSampler } from "./useLoadingSampler";
-export { default as useSampler } from "./useSampler";
+export { default as useLoadingSampler } from "./useLoadingSynth";
+export { default as useSynth } from "./useSynth";
 export { default as usePlayer } from "./usePlayer";

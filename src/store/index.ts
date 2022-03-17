@@ -1,18 +1,21 @@
 import { createContext, Dispatch } from "react";
-import { PlaybackState, Sampler, Transport } from "tone";
+import { PlaybackState, PolySynth, Transport } from "tone";
 
 export type State = {
   time: number;
   duration: number;
   toneState: PlaybackState;
   isLoaded: boolean;
-  sampler: Sampler | undefined;
+  synth: PolySynth | undefined;
   disabled: boolean;
   playbackTimeID: number;
 };
 
 export type Action =
-  | { type: "LOADED_SAMPLER"; payload: { sampler: Sampler; isLoaded: boolean } }
+  | {
+      type: "LOADED_SYNTH";
+      payload: { synth: PolySynth; isLoaded: boolean };
+    }
   | {
       type: "LOADED_MIDI";
       payload: { duration: number; playbackTimeID: number };
@@ -31,19 +34,19 @@ export const initialState: State = {
   duration: 0,
   toneState: "stopped",
   isLoaded: false,
-  sampler: undefined,
+  synth: undefined,
   disabled: true,
   playbackTimeID: 0,
 };
 
 export const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "LOADED_SAMPLER": {
+    case "LOADED_SYNTH": {
       const payload = action.payload;
       return {
         ...state,
         isLoaded: payload.isLoaded,
-        sampler: payload.sampler,
+        synth: payload.synth,
       };
     }
     case "LOADED_MIDI": {

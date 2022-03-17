@@ -8,7 +8,7 @@ const toMIDI = (note: string) => Frequency(note).toMidi();
 const usePlayer = () => {
   const { state, dispatch } = useContext(StoreContext);
   const [isMute, setMute] = useState(false);
-  const sampler = state.sampler;
+  const synth = state.synth;
   const playbackTime = () =>
     window.setInterval(() => dispatch({ type: "COUNT_TIME" }), 1000);
 
@@ -20,7 +20,7 @@ const usePlayer = () => {
       Transport.cancel();
       midi.tracks.forEach((track) => {
         new Part((time, note) => {
-          sampler?.triggerAttackRelease(
+          synth?.triggerAttackRelease(
             note.name,
             note.duration,
             time,
@@ -62,8 +62,8 @@ const usePlayer = () => {
   const stop = () => dispatch({ type: "STOP_MIDI" });
 
   const toggleVolume = () => {
-    if (!sampler) return;
-    const volume = sampler.volume;
+    if (!synth) return;
+    const volume = synth.volume;
     volume.value = !isMute ? volume.minValue : 0;
     setMute(!isMute);
   };
