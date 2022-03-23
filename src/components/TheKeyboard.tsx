@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { range } from "ramda";
-import { Frequency } from "tone";
+import { Frequency, now } from "tone";
 import { useSynth as useSynthDI } from "../hooks";
 import "./TheKeyboard.css";
 
@@ -29,40 +30,45 @@ const isBlackKey = (midiNote: number) => {
 
 function TheKeyboard({ useSynth = useSynthDI }) {
   const synth = useSynth();
-
-  const _pressKey = (e: any) => {
-    const target = e.target;
-    target.classList.add("--pressing");
-    synth?.triggerAttack(toNote(target.dataset.keyNum));
-  };
-
-  const _releaseKey = (e: any) => {
-    const target = e.target;
-    target.classList.remove("--pressing");
-    synth?.triggerRelease(toNote(target.dataset.keyNum));
-  };
+  const [dragging, setDragging] = useState(false);
 
   const pressKey = (e: any) => {
-    _pressKey(e);
-    const currentTarget = e.currentTarget;
-    currentTarget.addEventListener("pointerover", _pressKey);
-    currentTarget.addEventListener("pointerout", _releaseKey);
+    const dataset = e.target.dataset;
+    if (!dataset.keyNum) return;
+    dataset.active = true;
+    synth?.triggerAttack(toNote(dataset.keyNum), now());
   };
+
   const releaseKey = (e: any) => {
-    _releaseKey(e);
-    const currentTarget = e.currentTarget;
-    currentTarget.removeEventListener("pointerover", _pressKey);
-    currentTarget.removeEventListener("pointerout", _releaseKey);
+    const dataset = e.target.dataset;
+    if (!dataset.keyNum) return;
+    dataset.active = false;
+    synth?.triggerRelease(toNote(dataset.keyNum));
   };
+
+  useEffect(() => {
+    const pointerdownHandler = () => setDragging(true);
+    const pointerupHandler = () => setDragging(false);
+    document.addEventListener("pointerdown", pointerdownHandler);
+    document.addEventListener("pointerup", pointerupHandler);
+    return () => {
+      document.removeEventListener("pointerdown", pointerdownHandler);
+      document.removeEventListener("pointerup", pointerupHandler);
+    };
+  }, []);
 
   return (
     <div
       className="the-keyboard el-stack"
+      style={{ margin: "0 auto" }}
       onPointerDown={pressKey}
+      onPointerOver={(e: any) => dragging && pressKey(e)}
       onPointerUp={releaseKey}
+      onPointerOut={(e: any) => dragging && releaseKey(e)}
     >
-      {arrayChunk(midiNotes, midiNotesLen).map(
-        (chunk: Array<number>, i: number) => {
+      {arrayChunk(midiNotes, midiNotesLen)
+        .reverse()
+        .map((chunk: Array<number>, i: number) => {
           return (
             <div className="the-keyboard__row" key={i}>
               {chunk.map((midiNote: number) => {
@@ -89,8 +95,7 @@ function TheKeyboard({ useSynth = useSynthDI }) {
               })}
             </div>
           );
-        }
-      )}
+        })}
     </div>
   );
 }

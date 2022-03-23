@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Frequency, Part, Transport } from "tone";
 import { Midi } from "@tonejs/midi";
 import { StoreContext } from "../store";
@@ -7,7 +7,6 @@ const toMIDI = (note: string) => Frequency(note).toMidi();
 
 const usePlayer = () => {
   const { state, dispatch } = useContext(StoreContext);
-  const [isMute, setMute] = useState(false);
   const synth = state.synth;
   const playbackTime = () =>
     window.setInterval(() => dispatch({ type: "COUNT_TIME" }), 1000);
@@ -26,12 +25,14 @@ const usePlayer = () => {
             time,
             note.velocity
           );
-          const keyNumElem = document.querySelector(
-            `[data-key-num="${toMIDI(note.name)}"]`
-          )!.classList;
-          keyNumElem.add("--pressing");
+          const keyNumElemDataset = (
+            document.querySelector(
+              `[data-key-num="${toMIDI(note.name)}"]`
+            )! as HTMLElement
+          ).dataset;
+          keyNumElemDataset.active = "true";
           setTimeout(
-            () => keyNumElem.remove("--pressing"),
+            () => (keyNumElemDataset.active = "false"),
             note.duration * 1000
           );
         }, track.notes).start();
@@ -61,23 +62,12 @@ const usePlayer = () => {
 
   const stop = () => dispatch({ type: "STOP_MIDI" });
 
-  const toggleVolume = () => {
-    if (!synth) return;
-    const volume = synth.volume;
-    volume.value = !isMute ? volume.minValue : 0;
-    setMute(!isMute);
-  };
-
   return {
-    state: {
-      isMute,
-      ...state,
-    },
+    state,
     handlers: {
       dropFile,
       PlayPause,
       stop,
-      toggleVolume,
     },
   };
 };

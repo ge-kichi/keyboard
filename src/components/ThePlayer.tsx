@@ -1,22 +1,17 @@
-import {
-  faPlay,
-  faPause,
-  faStop,
-  faVolumeUp,
-  faVolumeMute,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPause, faStop } from "@fortawesome/free-solid-svg-icons";
 import BaseIconButton from "./BaseIconButton";
 import BaseTime from "./BaseTime";
 import { usePlayer as usePlayerDI } from "../hooks";
 
-function TheMenu({ usePlayer = usePlayerDI }) {
+function ThePlayer({ usePlayer = usePlayerDI }) {
   const { state, handlers } = usePlayer();
   return (
     <div className="the-menu">
       <div className="the-menu__filedrop form-group">
         <input
-          className="form-input"
           type="file"
+          id="dropFile"
+          className="form-input"
           accept="audio/midi"
           onChange={handlers.dropFile}
         />
@@ -25,16 +20,12 @@ function TheMenu({ usePlayer = usePlayerDI }) {
         <BaseIconButton
           onClick={handlers.PlayPause}
           iconProp={state.toneState !== "started" ? faPlay : faPause}
-          disabled={state.disabled}
+          disabled={state.playerDisabled}
         />
         <BaseIconButton
           onClick={handlers.stop}
           iconProp={faStop}
-          disabled={state.disabled}
-        />
-        <BaseIconButton
-          onClick={handlers.toggleVolume}
-          iconProp={!state.isMute ? faVolumeUp : faVolumeMute}
+          disabled={state.playerDisabled}
         />
         <BaseTime time={state.time} duration={state.duration} />
       </div>
@@ -42,4 +33,4 @@ function TheMenu({ usePlayer = usePlayerDI }) {
   );
 }
 
-export default TheMenu;
+export default ThePlayer;

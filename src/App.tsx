@@ -1,30 +1,23 @@
 import { useReducer } from "react";
-import TheMenu from "./components/TheMenu";
+import TheSettings from "./components/TheSettings";
 import TheKeyboard from "./components/TheKeyboard";
 import TheFooter from "./components/TheFooter";
-import TheLoading from "./components/TheLoading";
-import { useLoadingSampler } from "./hooks";
 import { initialState, reducer, StoreContext } from "./store";
 import "./App.css";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  useLoadingSampler(dispatch);
   return (
     <div className="App">
-      {state.isLoaded ? (
-        <StoreContext.Provider value={{ state, dispatch }}>
-          <div className="el-cover">
-            <TheMenu />
-            <div className="el-cover__centered" style={{ overflowX: "auto" }}>
-              <TheKeyboard />
-            </div>
-            <TheFooter />
+      <StoreContext.Provider value={{ state, dispatch }}>
+        <div className="el-cover">
+          <TheSettings />
+          <div className="el-reel">
+            <TheKeyboard />
           </div>
-        </StoreContext.Provider>
-      ) : (
-        <TheLoading />
-      )}
+          <TheFooter />
+        </div>
+      </StoreContext.Provider>
     </div>
   );
 }

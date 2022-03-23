@@ -61,7 +61,7 @@
   border-right: solid black 3px;
 }
 
-.the-keyboard__key.--pressing {
+.the-keyboard__key[data-active="true"] {
   border-bottom: var(--botder-bottom);
   border-left: var(--botder-left);
   border-right: var(--botder-right);
@@ -69,14 +69,14 @@
   background: var(--background);
 }
 
-.the-keyboard__key.--white.--pressing {
+.the-keyboard__key.--white[data-active="true"] {
   --botder-bottom: solid rgb(230, 230, 230) 5px;
   --botder-left: solid rgb(109, 109, 76) 2px;
   --botder-right: solid rgb(109, 109, 76) 2px;
   --box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
 }
 
-.the-keyboard__key.--black.--pressing {
+.the-keyboard__key.--black[data-active="true"] {
   --botder-bottom: solid rgb(54, 54, 54) 4px;
   --box-shadow: 2px 1px 2px 0 rgba(0, 0, 0, 0.4);
   --background: linear-gradient(to bottom, rgb(24, 24, 24) 100%, white);

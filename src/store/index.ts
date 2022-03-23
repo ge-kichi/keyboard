@@ -1,20 +1,23 @@
 import { createContext, Dispatch } from "react";
 import { PlaybackState, PolySynth, Transport } from "tone";
 
+const synth = new PolySynth().toDestination();
+const params = synth.get();
+
 export type State = {
   time: number;
   duration: number;
   toneState: PlaybackState;
-  isLoaded: boolean;
-  synth: PolySynth | undefined;
-  disabled: boolean;
+  synth: PolySynth;
+  synthParams: any;
+  playerDisabled: boolean;
   playbackTimeID: number;
 };
 
 export type Action =
   | {
-      type: "LOADED_SYNTH";
-      payload: { synth: PolySynth; isLoaded: boolean };
+      type: "SET_SYNTH_PARAMS";
+      payload: { synthParams: any };
     }
   | {
       type: "LOADED_MIDI";
@@ -33,20 +36,18 @@ export const initialState: State = {
   time: 0,
   duration: 0,
   toneState: "stopped",
-  isLoaded: false,
-  synth: undefined,
-  disabled: true,
+  synth: synth,
+  synthParams: params,
+  playerDisabled: true,
   playbackTimeID: 0,
 };
 
 export const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "LOADED_SYNTH": {
-      const payload = action.payload;
+    case "SET_SYNTH_PARAMS": {
       return {
         ...state,
-        isLoaded: payload.isLoaded,
-        synth: payload.synth,
+        synthParams: action.payload.synthParams,
       };
     }
     case "LOADED_MIDI": {
@@ -55,7 +56,7 @@ export const reducer = (state: State, action: Action) => {
         ...state,
         duration: payload.duration,
         time: 0,
-        disabled: false,
+        playerDisabled: false,
         toneState: Transport.start().state,
         playbackTimeID: payload.playbackTimeID,
       };
