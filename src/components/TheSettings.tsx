@@ -42,14 +42,19 @@ function TheSettings() {
         </BaseMenu>
       </div>
       <BaseMenu contentName="ocillator">
-        <BaseSelect label="type" id="type">
-          {["Choose a type", "Slack", "Skype", "Hipchat"]}
+        <BaseSelect
+          label="type"
+          id="type"
+          value={getParams("type")}
+          onChange={(e: any) => setParams("type", e.target.value)}
+        >
+          {["sine", "square", "sawtooth", "triangle"]}
         </BaseSelect>
         <BaseInputNumber
           label="partialCount"
           id="partialCount"
           min="0"
-          step="0.1"
+          step="1"
           value={getParams("partialCount")}
           onChange={(e: any) => setParams("partialCount", e.target.value)}
         />
@@ -67,33 +72,48 @@ function TheSettings() {
           label="attack"
           id="attack"
           min="0"
-          step="0.1"
+          step="0.001"
           value={getParams("attack")}
           onChange={(e: any) => setParams("attack", e.target.value)}
         />
-        <BaseInputRadio label="attackCurve" name="attackCurve">
+        <BaseInputRadio
+          label="attackCurve"
+          name="attackCurve"
+          value={getParams("attackCurve")}
+          onChange={(e: any) => setParams("attackCurve", e.target.value)}
+        >
           {["linear", "exponential"]}
         </BaseInputRadio>
         <BaseInputNumber
           label="decay"
           id="decay"
           min="0"
-          step="0.1"
+          step="0.001"
           value={getParams("decay")}
           onChange={(e: any) => setParams("decay", e.target.value)}
         />
-        <BaseInputRadio label="decayCurve" name="decayCurve">
+        <BaseInputRadio
+          label="decayCurve"
+          name="decayCurve"
+          value={getParams("decayCurve")}
+          onChange={(e: any) => setParams("decayCurve", e.target.value)}
+        >
           {["linear", "exponential"]}
         </BaseInputRadio>
         <BaseInputNumber
           label="release"
           id="release"
           min="0"
-          step="0.1"
+          step="0.001"
           value={getParams("release")}
           onChange={(e: any) => setParams("release", e.target.value)}
         />
-        <BaseInputRadio label="releaseCurve" name="releaseCurve">
+        <BaseInputRadio
+          label="releaseCurve"
+          name="releaseCurve"
+          value={getParams("releaseCurve")}
+          onChange={(e: any) => setParams("releaseCurve", e.target.value)}
+        >
           {["linear", "exponential"]}
         </BaseInputRadio>
         <BaseInputNumber
@@ -101,7 +121,7 @@ function TheSettings() {
           id="sustain"
           min="0.1"
           max="1"
-          step="0.1"
+          step="0.001"
           value={getParams("sustain")}
           onChange={(e: any) => setParams("sustain", e.target.value)}
         />
