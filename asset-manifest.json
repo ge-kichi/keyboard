@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/keyboard/static/css/main.724eda2f.chunk.css",
-    "main.js": "/keyboard/static/js/main.f039d75d.chunk.js",
-    "main.js.map": "/keyboard/static/js/main.f039d75d.chunk.js.map",
-    "runtime-main.js": "/keyboard/static/js/runtime-main.8c0aabfe.js",
-    "runtime-main.js.map": "/keyboard/static/js/runtime-main.8c0aabfe.js.map",
-    "static/css/2.60a23d82.chunk.css": "/keyboard/static/css/2.60a23d82.chunk.css",
-    "static/js/2.0ea13a46.chunk.js": "/keyboard/static/js/2.0ea13a46.chunk.js",
-    "static/js/2.0ea13a46.chunk.js.map": "/keyboard/static/js/2.0ea13a46.chunk.js.map",
-    "static/js/3.a06a703b.chunk.js": "/keyboard/static/js/3.a06a703b.chunk.js",
-    "static/js/3.a06a703b.chunk.js.map": "/keyboard/static/js/3.a06a703b.chunk.js.map",
+    "main.css": "/keyboard/static/css/main.c68fc025.chunk.css",
+    "main.js": "/keyboard/static/js/main.5f2976aa.chunk.js",
+    "main.js.map": "/keyboard/static/js/main.5f2976aa.chunk.js.map",
+    "runtime-main.js": "/keyboard/static/js/runtime-main.6d7a6556.js",
+    "runtime-main.js.map": "/keyboard/static/js/runtime-main.6d7a6556.js.map",
+    "static/css/2.5250f9ef.chunk.css": "/keyboard/static/css/2.5250f9ef.chunk.css",
+    "static/js/2.e5d25414.chunk.js": "/keyboard/static/js/2.e5d25414.chunk.js",
+    "static/js/2.e5d25414.chunk.js.map": "/keyboard/static/js/2.e5d25414.chunk.js.map",
+    "static/js/3.43a915ba.chunk.js": "/keyboard/static/js/3.43a915ba.chunk.js",
+    "static/js/3.43a915ba.chunk.js.map": "/keyboard/static/js/3.43a915ba.chunk.js.map",
     "index.html": "/keyboard/index.html",
-    "static/css/2.60a23d82.chunk.css.map": "/keyboard/static/css/2.60a23d82.chunk.css.map",
-    "static/css/main.724eda2f.chunk.css.map": "/keyboard/static/css/main.724eda2f.chunk.css.map",
-    "static/js/2.0ea13a46.chunk.js.LICENSE.txt": "/keyboard/static/js/2.0ea13a46.chunk.js.LICENSE.txt"
+    "static/css/2.5250f9ef.chunk.css.map": "/keyboard/static/css/2.5250f9ef.chunk.css.map",
+    "static/css/main.c68fc025.chunk.css.map": "/keyboard/static/css/main.c68fc025.chunk.css.map",
+    "static/js/2.e5d25414.chunk.js.LICENSE.txt": "/keyboard/static/js/2.e5d25414.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.8c0aabfe.js",
-    "static/css/2.60a23d82.chunk.css",
-    "static/js/2.0ea13a46.chunk.js",
-    "static/css/main.724eda2f.chunk.css",
-    "static/js/main.f039d75d.chunk.js"
+    "static/js/runtime-main.6d7a6556.js",
+    "static/css/2.5250f9ef.chunk.css",
+    "static/js/2.e5d25414.chunk.js",
+    "static/css/main.c68fc025.chunk.css",
+    "static/js/main.5f2976aa.chunk.js"
   ]
 }
