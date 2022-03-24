@@ -1,14 +1,20 @@
-import { ReactNode, Children } from "react";
+import { ReactNode, Children, CSSProperties } from "react";
 
 function BaseMenu(props: { children: ReactNode; contentName?: string }) {
   return (
-    <ul className="menu el-stack">
-      {props.contentName ? (
-        <li className="divider" data-content={props.contentName}></li>
-      ) : (
-        ""
-      )}
-      {/* <li className="divider" data-content="LINKS"></li> */}
+    <ul className="menu">
+      <div
+        className="tile tile-centered"
+        style={
+          {
+            marginBottom: "var(--ms-1)",
+          } as CSSProperties
+        }
+      >
+        <div className="tile-content">
+          <div className="tile-title">{props.contentName}</div>
+        </div>
+      </div>
       {Children.map(props.children, (child, i) => (
         <li className="menu-item" key={i}>
           {child}
