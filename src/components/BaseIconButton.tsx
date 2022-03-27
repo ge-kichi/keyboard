@@ -1,20 +1,25 @@
+import { FC, MouseEventHandler } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function BasePlayPauseButton(props: {
+type BaseIconButtonProps = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  disabled: boolean;
   iconProp: IconProp;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      className="btn btn-action s-circle"
-      onClick={props.onClick}
-      disabled={props.disabled}
-    >
-      <FontAwesomeIcon icon={props.iconProp} />
-    </button>
-  );
-}
+};
 
-export default BasePlayPauseButton;
+const BaseIconButton: FC<BaseIconButtonProps> = ({
+  onClick,
+  disabled,
+  iconProp,
+}) => (
+  <button
+    className="btn btn-action s-circle"
+    onClick={onClick}
+    disabled={disabled}
+  >
+    <FontAwesomeIcon icon={iconProp} />
+  </button>
+);
+
+export default BaseIconButton;

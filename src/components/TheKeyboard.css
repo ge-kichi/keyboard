@@ -4,9 +4,9 @@
   box-sizing: border-box;
   user-select: none;
   --white-key-width: 10mm;
-  --white-key-height: 200px;
+  --white-key-height: 150px;
   --black-key-width: calc(var(--white-key-width) * 3 / 4);
-  --black-key-height: calc(var(--white-key-height) * 19 / 29);
+  --black-key-height: calc(var(--white-key-height) * 3 / 5);
 }
 
 .the-keyboard * {

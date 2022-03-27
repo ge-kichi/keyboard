@@ -2,10 +2,21 @@
 
 See [Page](https://l1ck0h.github.io/keyboard/).
 
-## ISSUES
+## Issues
 
-- [ ] touchEvent(touchmove)
-- [ ] select sounds
+- [ ] touchEvent
+
+## Glossary
+
+- detune
+- portamento
+- sine wave
+- square wave
+- sawtooth wave
+- triangle wave
+- partialCount
+- phase
+- attack
 
 ## References and Inspiration
 

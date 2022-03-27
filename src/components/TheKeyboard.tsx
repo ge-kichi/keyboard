@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { range } from "ramda";
 import { Frequency, now } from "tone";
-import { useSynth as useSynthDI } from "../hooks";
+import {
+  useSynth as useSynthDI,
+  useToneState as useToneStateDI,
+} from "../hooks";
 import "./TheKeyboard.css";
 
 // https://www.nxworld.net/js-array-chunk.html
@@ -28,11 +31,13 @@ const isBlackKey = (midiNote: number) => {
   }
 };
 
-function TheKeyboard({ useSynth = useSynthDI }) {
+function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
   const synth = useSynth();
+  const toneState = useToneState();
   const [dragging, setDragging] = useState(false);
 
   const pressKey = (e: any) => {
+    e.preventDefault();
     const dataset = e.target.dataset;
     if (!dataset.keyNum) return;
     dataset.active = true;
@@ -40,6 +45,7 @@ function TheKeyboard({ useSynth = useSynthDI }) {
   };
 
   const releaseKey = (e: any) => {
+    e.preventDefault();
     const dataset = e.target.dataset;
     if (!dataset.keyNum) return;
     dataset.active = false;
@@ -49,11 +55,14 @@ function TheKeyboard({ useSynth = useSynthDI }) {
   useEffect(() => {
     const pointerdownHandler = () => setDragging(true);
     const pointerupHandler = () => setDragging(false);
+    const disableScroll = (e: any) => dragging && e.preventDefault();
     document.addEventListener("pointerdown", pointerdownHandler);
     document.addEventListener("pointerup", pointerupHandler);
+    document.addEventListener("pointermove", disableScroll, { passive: false });
     return () => {
       document.removeEventListener("pointerdown", pointerdownHandler);
       document.removeEventListener("pointerup", pointerupHandler);
+      document.removeEventListener("pointermove", disableScroll);
     };
   }, []);
 
@@ -70,7 +79,14 @@ function TheKeyboard({ useSynth = useSynthDI }) {
         .reverse()
         .map((chunk: Array<number>, i: number) => {
           return (
-            <div className="the-keyboard__row" key={i}>
+            <div
+              className={
+                "the-keyboard__row" +
+                " " +
+                (toneState === "started" ? "app-util-pointerEvent:none" : "")
+              }
+              key={i}
+            >
               {chunk.map((midiNote: number) => {
                 const _note = toNote(midiNote);
                 return (

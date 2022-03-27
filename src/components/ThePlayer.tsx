@@ -6,8 +6,8 @@ import { usePlayer as usePlayerDI } from "../hooks";
 function ThePlayer({ usePlayer = usePlayerDI }) {
   const { state, handlers } = usePlayer();
   return (
-    <div className="the-menu">
-      <div className="the-menu__filedrop form-group">
+    <div>
+      <div className="form-group">
         <input
           type="file"
           id="dropFile"
@@ -16,7 +16,7 @@ function ThePlayer({ usePlayer = usePlayerDI }) {
           onChange={handlers.dropFile}
         />
       </div>
-      <div className="the-menu__toolbar el-cluster el-cluster--justify:flex-start">
+      <div className="el-cluster el-cluster--justify:flex-start">
         <BaseIconButton
           onClick={handlers.PlayPause}
           iconProp={state.toneState !== "started" ? faPlay : faPause}

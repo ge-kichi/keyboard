@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { curry, Lens, lensPath, set, view } from "ramda";
-import { StoreContext } from "../store";
+import useStore from "./useStore";
 
 type SynthParamsKey_Oscillator = "type" | "partialCount" | "phase";
 type SynthParamsKey_Envelope =
@@ -49,7 +48,7 @@ const _set = curry((obj: any, lens: Lens<any, any>, value: any) =>
 );
 
 const useSynthParams = () => {
-  const { state, dispatch } = useContext(StoreContext);
+  const { state, dispatch } = useStore();
   const viewSynthParams = _view(state.synthParams);
   const setSynthParams = _set(state.synthParams);
   return {

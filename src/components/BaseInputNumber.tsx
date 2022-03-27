@@ -1,31 +1,40 @@
+import { FC } from "react";
 import BaseForm from "./BaseForm";
 
-function BaseInputNumber(props: {
-  label: string;
+type BaseInputNumberProps = {
   id: string;
+  label: string;
   min?: string;
   max?: string;
   step?: string;
   value: string;
   onChange: (e: any) => void;
-}) {
-  return (
-    <BaseForm>
-      <label className="form-label" htmlFor={props.label}>
-        {props.label}
-      </label>
-      <input
-        type="number"
-        id={props.label}
-        className="form-input"
-        min={props.min}
-        max={props.max}
-        step={props.step}
-        value={props.value}
-        onChange={props.onChange}
-      />
-    </BaseForm>
-  );
-}
+};
+
+const BaseInputNumber: FC<BaseInputNumberProps> = ({
+  id,
+  label,
+  min,
+  max,
+  step,
+  value,
+  onChange,
+}) => (
+  <BaseForm>
+    <label className="form-label" htmlFor={id}>
+      {label}
+    </label>
+    <input
+      type="number"
+      id={id}
+      className="form-input"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={onChange}
+    />
+  </BaseForm>
+);
 
 export default BaseInputNumber;

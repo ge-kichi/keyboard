@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { StoreContext } from "../store";
+import useStore from "./useStore";
 
 const useSynth = () => {
-  const { state } = useContext(StoreContext);
+  const { state } = useStore();
   return state.synth;
 };
 

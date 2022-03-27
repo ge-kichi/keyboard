@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { Frequency, Part, Transport } from "tone";
 import { Midi } from "@tonejs/midi";
-import { StoreContext } from "../store";
+import useStore from "./useStore";
 
 const toMIDI = (note: string) => Frequency(note).toMidi();
 
 const usePlayer = () => {
-  const { state, dispatch } = useContext(StoreContext);
+  const { state, dispatch } = useStore();
   const synth = state.synth;
   const playbackTime = () =>
     window.setInterval(() => dispatch({ type: "COUNT_TIME" }), 1000);

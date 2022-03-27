@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 const convertTime = (t: number) => {
   const padZero = (num: number) => num.toString().padStart(2, "0");
   const hh = Math.floor((t % (24 * 60 * 60)) / (60 * 60));
@@ -6,12 +8,15 @@ const convertTime = (t: number) => {
   return hh ? hh + ":" + mm + ":" + padZero(ss) : mm + ":" + padZero(ss);
 };
 
-function BaseTime(props: { time: number; duration: number }) {
-  return (
-    <span className="base-time">
-      {convertTime(props.time)} / {convertTime(props.duration)}
-    </span>
-  );
-}
+type BaseTimeProps = {
+  time: number;
+  duration: number;
+};
+
+const BaseTime: FC<BaseTimeProps> = ({ time, duration }) => (
+  <span className="base-time">
+    {convertTime(time)} / {convertTime(duration)}
+  </span>
+);
 
 export default BaseTime;
