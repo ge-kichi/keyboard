@@ -4,7 +4,10 @@ import TheMenuEnvelope from "./TheMenuEnvelope";
 
 function TheMenu() {
   return (
-    <div className="el-center">
+    <div
+      className="el-box el-box--padding:ms5"
+      style={{ paddingTop: 0, paddingBottom: 0 }}
+    >
       <TheMenuOptions />
       <TheMenuOscillator />
       <TheMenuEnvelope />
