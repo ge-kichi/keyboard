@@ -16,7 +16,6 @@ See [Page](https://l1ck0h.github.io/keyboard/).
 - triangle wave
 - partialCount
 - phase
-- attack
 
 ## References and Inspiration
 

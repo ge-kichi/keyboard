@@ -1,13 +1,14 @@
 import { faPlay, faPause, faStop } from "@fortawesome/free-solid-svg-icons";
+import BaseAccordions from "./BaseAccordions";
 import BaseIconButton from "./BaseIconButton";
 import BaseTime from "./BaseTime";
 import { usePlayer as usePlayerDI } from "../hooks";
 
-function ThePlayer({ usePlayer = usePlayerDI }) {
+function TheMenuPlayer({ usePlayer = usePlayerDI }) {
   const { state, handlers } = usePlayer();
 
   return (
-    <div>
+    <BaseAccordions id="player" title="player" name="player">
       <div className="form-group">
         <input
           type="file"
@@ -30,8 +31,8 @@ function ThePlayer({ usePlayer = usePlayerDI }) {
         />
         <BaseTime time={state.time} duration={state.duration} />
       </div>
-    </div>
+    </BaseAccordions>
   );
 }
 
-export default ThePlayer;
+export default TheMenuPlayer;

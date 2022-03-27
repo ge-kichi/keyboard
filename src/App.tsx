@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-import ThePlayer from "./components/ThePlayer";
 import TheKeyboard from "./components/TheKeyboard";
 import TheMenu from "./components/TheMenu";
 import TheFooter from "./components/TheFooter";
@@ -11,12 +10,13 @@ function App() {
   return (
     <div className="App">
       <StoreContext.Provider value={{ state, dispatch }}>
-        <div className="el-cover">
-          <ThePlayer />
-          <div className="el-reel">
-            <TheKeyboard />
+        <div className="el-box el-stack" style={{ minHeight: "100vh" }}>
+          <div style={{ flex: 1 }}>
+            <div className="el-reel">
+              <TheKeyboard />
+            </div>
+            <TheMenu />
           </div>
-          <TheMenu />
           <TheFooter />
         </div>
       </StoreContext.Provider>

@@ -1,3 +1,4 @@
+import TheMenuPlayer from "./TheMenuPlayer";
 import TheMenuOptions from "./TheMenuOptions";
 import TheMenuOscillator from "./TheMenuOscillator";
 import TheMenuEnvelope from "./TheMenuEnvelope";
@@ -8,6 +9,7 @@ function TheMenu() {
       className="el-box el-box--padding:ms5"
       style={{ paddingTop: 0, paddingBottom: 0 }}
     >
+      <TheMenuPlayer />
       <TheMenuOptions />
       <TheMenuOscillator />
       <TheMenuEnvelope />
