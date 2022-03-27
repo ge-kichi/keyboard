@@ -82,7 +82,7 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
               className={
                 "the-keyboard__row" +
                 " " +
-                (toneState === "started" ? "app-util-pointerEvent:none" : "")
+                (toneState === "started" ? "--notAllowed" : "")
               }
               key={i}
             >

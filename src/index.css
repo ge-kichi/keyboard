@@ -1,6 +1,0 @@
-.app-util-pointerEvent\:none {
-  cursor: not-allowed;
-}
-.app-util-pointerEvent\:none > * {
-  pointer-events: none;
-}

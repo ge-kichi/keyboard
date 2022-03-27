@@ -24,6 +24,14 @@
   margin-bottom: var(--ms1);
 }
 
+.the-keyboard__row.--notAllowed {
+  cursor: not-allowed;
+}
+
+.the-keyboard__row.--notAllowed > * {
+  pointer-events: none;
+}
+
 .the-keyboard__key-container {
   position: relative;
 }
