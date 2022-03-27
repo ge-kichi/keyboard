@@ -1618,8 +1618,8 @@
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
 "@l1ck0h/every-layout.css@git+ssh://git@github.com:l1ck0h/every-layout.css.git":
-  version "1.0.0-alpha.11"
-  resolved "git+ssh://git@github.com:l1ck0h/every-layout.css.git#08600343f897f4385d5cd6357f0cd53d9c2b34fa"
+  version "1.0.0-alpha.12"
+  resolved "git+ssh://git@github.com:l1ck0h/every-layout.css.git#42f3ee7c3613148d2239c1334ec5ae3a1ad467cb"
 
 "@mdx-js/loader@^1.6.22":
   version "1.6.22"

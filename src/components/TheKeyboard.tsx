@@ -69,10 +69,12 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
   return (
     <div
       className="the-keyboard el-stack"
-      onPointerDown={pressKey}
-      onPointerOver={(e: any) => dragging && pressKey(e)}
-      onPointerUp={releaseKey}
-      onPointerOut={(e: any) => dragging && releaseKey(e)}
+      onMouseDown={pressKey}
+      onMouseOver={(e: any) => dragging && pressKey(e)}
+      onMouseUp={releaseKey}
+      onMouseOut={(e: any) => dragging && releaseKey(e)}
+      onTouchStart={pressKey}
+      onTouchEnd={releaseKey}
     >
       {arrayChunk(midiNotes, midiNotesLen)
         .reverse()
