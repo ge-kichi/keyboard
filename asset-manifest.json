@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/keyboard/static/css/main.e77ec773.chunk.css",
-    "main.js": "/keyboard/static/js/main.3f2a68f5.chunk.js",
-    "main.js.map": "/keyboard/static/js/main.3f2a68f5.chunk.js.map",
+    "main.js": "/keyboard/static/js/main.b8fb3a1b.chunk.js",
+    "main.js.map": "/keyboard/static/js/main.b8fb3a1b.chunk.js.map",
     "runtime-main.js": "/keyboard/static/js/runtime-main.6d7a6556.js",
     "runtime-main.js.map": "/keyboard/static/js/runtime-main.6d7a6556.js.map",
     "static/css/2.052db6ca.chunk.css": "/keyboard/static/css/2.052db6ca.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.052db6ca.chunk.css",
     "static/js/2.c8f76239.chunk.js",
     "static/css/main.e77ec773.chunk.css",
-    "static/js/main.3f2a68f5.chunk.js"
+    "static/js/main.b8fb3a1b.chunk.js"
   ]
 }
