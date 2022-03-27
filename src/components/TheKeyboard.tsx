@@ -69,7 +69,6 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
   return (
     <div
       className="the-keyboard el-stack"
-      style={{ margin: "0 auto" }}
       onPointerDown={pressKey}
       onPointerOver={(e: any) => dragging && pressKey(e)}
       onPointerUp={releaseKey}

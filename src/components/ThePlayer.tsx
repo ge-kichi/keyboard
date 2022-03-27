@@ -5,6 +5,7 @@ import { usePlayer as usePlayerDI } from "../hooks";
 
 function ThePlayer({ usePlayer = usePlayerDI }) {
   const { state, handlers } = usePlayer();
+
   return (
     <div>
       <div className="form-group">
