@@ -56,13 +56,13 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
     const pointerdownHandler = () => setDragging(true);
     const pointerupHandler = () => setDragging(false);
     const disableScroll = (e: any) => dragging && e.preventDefault();
-    document.addEventListener("pointerdown", pointerdownHandler);
-    document.addEventListener("pointerup", pointerupHandler);
-    document.addEventListener("pointermove", disableScroll, { passive: false });
+    document.addEventListener("mousedown", pointerdownHandler);
+    document.addEventListener("mouseup", pointerupHandler);
+    document.addEventListener("mousemove", disableScroll, { passive: false });
     return () => {
-      document.removeEventListener("pointerdown", pointerdownHandler);
-      document.removeEventListener("pointerup", pointerupHandler);
-      document.removeEventListener("pointermove", disableScroll);
+      document.removeEventListener("mousedown", pointerdownHandler);
+      document.removeEventListener("mouseup", pointerupHandler);
+      document.removeEventListener("mousemove", disableScroll);
     };
   }, []);
 

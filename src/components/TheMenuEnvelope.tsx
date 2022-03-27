@@ -3,6 +3,8 @@ import BaseInputNumber from "./BaseInputNumber";
 import BaseInputRadio from "./BaseInputRadio";
 import { useSynthParams } from "../hooks";
 
+const curves = ["linear", "exponential"];
+
 function TheMenuEnvelope() {
   const { getParams, setParams } = useSynthParams();
   return (
@@ -21,7 +23,7 @@ function TheMenuEnvelope() {
         value={getParams("attackCurve")}
         onChange={(e: any) => setParams("attackCurve", e.target.value)}
       >
-        {["linear", "exponential"]}
+        {curves}
       </BaseInputRadio>
       <BaseInputNumber
         id="decay"
@@ -37,7 +39,7 @@ function TheMenuEnvelope() {
         value={getParams("decayCurve")}
         onChange={(e: any) => setParams("decayCurve", e.target.value)}
       >
-        {["linear", "exponential"]}
+        {curves}
       </BaseInputRadio>
       <BaseInputNumber
         id="release"
@@ -53,7 +55,7 @@ function TheMenuEnvelope() {
         value={getParams("releaseCurve")}
         onChange={(e: any) => setParams("releaseCurve", e.target.value)}
       >
-        {["linear", "exponential"]}
+        {curves}
       </BaseInputRadio>
       <BaseInputNumber
         id="sustain"
