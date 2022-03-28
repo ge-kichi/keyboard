@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <StoreContext.Provider value={{ state, dispatch }}>
         <div className="el-cover">
-          <div className="el-cover__centered">
+          <div>
             <div
               className="el-with-sidebar el-with-sidebar--right el-with-sidebar--noStretch"
               style={
