@@ -64,7 +64,7 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
       document.removeEventListener("mouseup", pointerupHandler);
       document.removeEventListener("mousemove", disableScroll);
     };
-  }, []);
+  }, [dragging]);
 
   return (
     <div

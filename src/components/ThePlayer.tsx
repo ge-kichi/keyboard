@@ -6,6 +6,13 @@ import { usePlayer } from "../hooks";
 function ThePlayer() {
   const { state, handlers } = usePlayer();
 
+  const dropFile = (e: any) => {
+    const [file] = e.target.files;
+    const reader = new FileReader();
+    reader.onload = (e: any) => handlers.loadMidi(e.target.result);
+    reader.readAsArrayBuffer(file);
+  };
+
   return (
     <div>
       <div className="form-group">
@@ -14,12 +21,12 @@ function ThePlayer() {
           id="dropFile"
           className="form-input"
           accept="audio/midi"
-          onChange={handlers.dropFile}
+          onChange={dropFile}
         />
       </div>
       <div className="el-cluster el-cluster--justify:flex-start">
         <BaseIconButton
-          onClick={handlers.PlayPause}
+          onClick={handlers.playPause}
           iconProp={state.toneState !== "started" ? faPlay : faPause}
           disabled={state.playerDisabled}
         />
