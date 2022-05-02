@@ -17,12 +17,12 @@ const loopMediaQueryLists = (
 const BaseMediaQuery: FC<BaseMediaQueryProps> = ({ mqComponents }) => {
   const [component, setComponent] = useState<ReactNode>(null);
   useEffect(() => {
-    const handleChange = (e?: any) => {
-      loopMediaQueryLists((mediaQueryList) => {
-        if (mediaQueryList.matches)
-          setComponent(mqComponents[mediaQueryList.media]);
-      });
-    };
+    const handleChange = (e?: any) =>
+      loopMediaQueryLists(
+        (mediaQueryList) =>
+          mediaQueryList.matches &&
+          setComponent(mqComponents[mediaQueryList.media])
+      );
     for (const key in mqComponents) {
       const mediaQuery = window.matchMedia(key);
       mediaQueryLists.push(mediaQuery);
