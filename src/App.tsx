@@ -23,9 +23,7 @@ function App() {
               }
             >
               <div className="el-stack">
-                <div className="el-reel">
-                  <TheKeyboard />
-                </div>
+                <TheKeyboard />
                 <ThePlayer />
               </div>
               <TheMenu />

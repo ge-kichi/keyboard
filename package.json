@@ -81,7 +81,5 @@
     "prettier": "^2.4.1"
   },
   "homepage": "https://l1ck0h.github.io/keyboard/",
-  "resolutions": {
-    "postcss-custom-properties": "^12.1.4"
-  }
+  "packageManager": "yarn@3.2.0"
 }

@@ -6,7 +6,12 @@ type BaseAccordionsProps = {
   title: string;
 };
 
-const BaseForm: FC<BaseAccordionsProps> = ({ id, name, title, children }) => (
+const BaseAccordions: FC<BaseAccordionsProps> = ({
+  id,
+  name,
+  title,
+  children,
+}) => (
   <div className="accordion">
     <input type="checkbox" id={id} name={name} hidden></input>
     <label className="accordion-header" htmlFor={id}>
@@ -17,4 +22,4 @@ const BaseForm: FC<BaseAccordionsProps> = ({ id, name, title, children }) => (
   </div>
 );
 
-export default BaseForm;
+export default BaseAccordions;

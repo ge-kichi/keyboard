@@ -26,11 +26,11 @@ const usePlayer = () => {
           time,
           note.velocity
         );
-        const keyNumElemDataset = (
-          document.querySelector(
-            `[data-key-num="${toMIDI(note.name)}"]`
-          )! as HTMLElement
-        ).dataset;
+        const selector = document.querySelector(
+          `[data-key-num="${toMIDI(note.name)}"]`
+        );
+        if (!selector) return;
+        const keyNumElemDataset = (selector as HTMLElement).dataset;
         keyNumElemDataset.active = "true";
         setTimeout(
           () => (keyNumElemDataset.active = "false"),

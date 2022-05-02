@@ -6,6 +6,7 @@ import {
   useToneState as useToneStateDI,
 } from "../hooks";
 import "./TheKeyboard.css";
+import BaseMediaQuery from "./BaseMediaQuery";
 
 // https://www.nxworld.net/js-array-chunk.html
 const arrayChunk = ([...array], size = 1) =>
@@ -15,8 +16,6 @@ const arrayChunk = ([...array], size = 1) =>
     []
   );
 
-const midiNotes = range(21, 109);
-const midiNotesLen = midiNotes.length / 2;
 const toNote = (midiNote: number) => Frequency(midiNote, "midi").toNote();
 const isBlackKey = (midiNote: number) => {
   switch ((midiNote - 20) % 12) {
@@ -66,17 +65,30 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
     };
   }, [dragging]);
 
-  return (
-    <div
-      className="the-keyboard el-stack"
-      onMouseDown={pressKey}
-      onMouseOver={(e: any) => dragging && pressKey(e)}
-      onMouseUp={releaseKey}
-      onMouseOut={(e: any) => dragging && releaseKey(e)}
-      onTouchStart={pressKey}
-      onTouchEnd={releaseKey}
-    >
-      {arrayChunk(midiNotes, midiNotesLen)
+  const Key = (midiNote: number) => {
+    const note = toNote(midiNote);
+    return (
+      <div className="the-keyboard__key-container" key={midiNote - 21}>
+        <div
+          className={
+            "the-keyboard__key" +
+            " " +
+            (!isBlackKey(midiNote) ? "--white" : "--black")
+          }
+          data-key-num={midiNote}
+        >
+          <span className="the-keyboard__label">
+            {/C[1-8]/.test(note) ? note : ""}
+          </span>
+        </div>
+      </div>
+    );
+  };
+
+  const Keys = (midiNotes: number[], isSeparate = true) => {
+    if (isSeparate) {
+      const midiNotesLen = midiNotes.length / 2;
+      return arrayChunk(midiNotes, midiNotesLen)
         .reverse()
         .map((chunk: Array<number>, i: number) => {
           return (
@@ -88,31 +100,48 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
               }
               key={i}
             >
-              {chunk.map((midiNote: number) => {
-                const _note = toNote(midiNote);
-                return (
-                  <div
-                    className="the-keyboard__key-container"
-                    key={midiNote - 21}
-                  >
-                    <div
-                      className={
-                        "the-keyboard__key" +
-                        " " +
-                        (!isBlackKey(midiNote) ? "--white" : "--black")
-                      }
-                      data-key-num={midiNote}
-                    >
-                      <span className="the-keyboard__label">
-                        {/C[1-8]/.test(_note) ? _note : ""}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+              {chunk.map((midiNote: number) => Key(midiNote))}
             </div>
           );
-        })}
+        });
+    } else {
+      return (
+        <div
+          className={
+            "the-keyboard__row" +
+            " " +
+            (toneState === "started" ? "--notAllowed" : "")
+          }
+        >
+          {midiNotes.map((midiNote: number) => Key(midiNote))}
+        </div>
+      );
+    }
+  };
+
+  const Keys12 = Keys(range(60, 72), false);
+  const Keys40 = Keys(range(45, 85));
+  const Keys64 = Keys(range(33, 97));
+  const Keys88 = Keys(range(21, 109));
+
+  return (
+    <div
+      className="the-keyboard el-stack"
+      onMouseDown={pressKey}
+      onMouseOver={(e: any) => dragging && pressKey(e)}
+      onMouseUp={releaseKey}
+      onMouseOut={(e: any) => dragging && releaseKey(e)}
+      onTouchStart={pressKey}
+      onTouchEnd={releaseKey}
+    >
+      <BaseMediaQuery
+        mqComponents={{
+          "(max-width: 599px)": Keys12,
+          "(min-width: 600px)": Keys40,
+          "(min-width: 960px)": Keys64,
+          "(min-width: 1280px)": Keys88,
+        }}
+      />
     </div>
   );
 }
