@@ -10,7 +10,7 @@ const Template = (args) => <BaseMediaQuery {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   mqComponents: {
-    "(max-width: 599px)": <div>media query: Extra Small</div>,
+    "not all and (min-width: 600px)": <div>media query: Extra Small</div>,
     "(min-width: 600px)": <div>media query: Small</div>,
   },
 };
@@ -19,7 +19,7 @@ const _BreakPoint = () => (
   <div>
     <BaseMediaQuery
       mqComponents={{
-        "(max-width: 599px)": <div>media query: Extra Small</div>,
+        "not all and (min-width: 600px)": <div>media query: Extra Small</div>,
         "(min-width: 600px)": <div>media query: Small</div>,
         "(min-width: 960px)": <div>media query: Medium</div>,
         "(min-width: 1280px)": <div>media query: Large</div>,

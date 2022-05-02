@@ -136,7 +136,7 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
     >
       <BaseMediaQuery
         mqComponents={{
-          "(max-width: 599px)": Keys12,
+          "not all and (min-width: 600px)": Keys12,
           "(min-width: 600px)": Keys40,
           "(min-width: 960px)": Keys64,
           "(min-width: 1280px)": Keys88,
