@@ -1,4 +1,3 @@
-// http://www.javascriptkit.com/javatutors/matchmediamultiple.shtml
 import { FC, ReactNode, useEffect, useState } from "react";
 
 type BaseMediaQueryProps = {
