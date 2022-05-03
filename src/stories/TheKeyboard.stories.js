@@ -8,11 +8,19 @@ export default {
 const Template = (args) => <TheKeyboard {...args} />;
 export const Default = Template.bind({});
 Default.args = {
-  useSynth: () => undefined,
-  useToneState: () => "stopped",
+  useKeyboard: () => {
+    return {
+      synth: undefined,
+      toneState: "stopped",
+    };
+  },
 };
 export const NotAllowed = Template.bind({});
 NotAllowed.args = {
-  useSynth: () => undefined,
-  useToneState: () => "started",
+  useKeyboard: () => {
+    return {
+      synth: undefined,
+      toneState: "started",
+    };
+  },
 };

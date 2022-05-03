@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { range } from "ramda";
-import { Frequency, now } from "tone";
-import {
-  useSynth as useSynthDI,
-  useToneState as useToneStateDI,
-} from "../hooks";
+import { Frequency, now, PlaybackState } from "tone";
+import { useKeyboard as useKeyboardDI } from "../hooks";
 import "./TheKeyboard.css";
 import BaseMediaQuery from "./BaseMediaQuery";
 
@@ -15,6 +12,11 @@ const arrayChunk = ([...array], size = 1) =>
       index % size ? acc : [...acc, array.slice(index, index + size)],
     []
   );
+
+let dragging = false;
+const pointerdownHandler = () => (dragging = true);
+const pointerupHandler = () => (dragging = false);
+const disableScroll = (e: any) => dragging && e.preventDefault();
 
 const toNote = (midiNote: number) => Frequency(midiNote, "midi").toNote();
 const isBlackKey = (midiNote: number) => {
@@ -30,42 +32,10 @@ const isBlackKey = (midiNote: number) => {
   }
 };
 
-function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
-  const synth = useSynth();
-  const toneState = useToneState();
-  const [dragging, setDragging] = useState(false);
+function TheKeyboard({ useKeyboard = useKeyboardDI }) {
+  const { synth, toneState } = useKeyboard();
 
-  const pressKey = (e: any) => {
-    e.preventDefault();
-    const dataset = e.target.dataset;
-    if (!dataset.keyNum) return;
-    dataset.active = true;
-    synth?.triggerAttack(toNote(dataset.keyNum), now());
-  };
-
-  const releaseKey = (e: any) => {
-    e.preventDefault();
-    const dataset = e.target.dataset;
-    if (!dataset.keyNum) return;
-    dataset.active = false;
-    synth?.triggerRelease(toNote(dataset.keyNum));
-  };
-
-  useEffect(() => {
-    const pointerdownHandler = () => setDragging(true);
-    const pointerupHandler = () => setDragging(false);
-    const disableScroll = (e: any) => dragging && e.preventDefault();
-    document.addEventListener("mousedown", pointerdownHandler);
-    document.addEventListener("mouseup", pointerupHandler);
-    document.addEventListener("mousemove", disableScroll, { passive: false });
-    return () => {
-      document.removeEventListener("mousedown", pointerdownHandler);
-      document.removeEventListener("mouseup", pointerupHandler);
-      document.removeEventListener("mousemove", disableScroll);
-    };
-  }, [dragging]);
-
-  const Key = (midiNote: number) => {
+  const Key = (midiNote: number): JSX.Element => {
     const note = toNote(midiNote);
     return (
       <div className="the-keyboard__key-container" key={midiNote - 21}>
@@ -84,62 +54,97 @@ function TheKeyboard({ useSynth = useSynthDI, useToneState = useToneStateDI }) {
       </div>
     );
   };
+  const Keys =
+    (midiNotes: number[], isSeparate = true) =>
+    (toneState: PlaybackState): JSX.Element => {
+      if (isSeparate) {
+        const midiNotesLen = midiNotes.length / 2;
+        return arrayChunk(midiNotes, midiNotesLen)
+          .reverse()
+          .map((chunk: Array<number>, i: number) => {
+            return (
+              <div
+                className={
+                  "the-keyboard__row" +
+                  " " +
+                  (toneState === "started" ? "--notAllowed" : "")
+                }
+                key={i}
+              >
+                {chunk.map((midiNote: number) => Key(midiNote))}
+              </div>
+            );
+          });
+      } else {
+        return (
+          <div
+            className={
+              "the-keyboard__row" +
+              " " +
+              (toneState === "started" ? "--notAllowed" : "")
+            }
+          >
+            {midiNotes.map((midiNote: number) => Key(midiNote))}
+          </div>
+        );
+      }
+    };
 
-  const Keys = (midiNotes: number[], isSeparate = true) => {
-    if (isSeparate) {
-      const midiNotesLen = midiNotes.length / 2;
-      return arrayChunk(midiNotes, midiNotesLen)
-        .reverse()
-        .map((chunk: Array<number>, i: number) => {
-          return (
-            <div
-              className={
-                "the-keyboard__row" +
-                " " +
-                (toneState === "started" ? "--notAllowed" : "")
-              }
-              key={i}
-            >
-              {chunk.map((midiNote: number) => Key(midiNote))}
-            </div>
-          );
-        });
-    } else {
-      return (
-        <div
-          className={
-            "the-keyboard__row" +
-            " " +
-            (toneState === "started" ? "--notAllowed" : "")
-          }
-        >
-          {midiNotes.map((midiNote: number) => Key(midiNote))}
-        </div>
-      );
-    }
+  const Keys12 = (toneState: PlaybackState) =>
+    Keys(range(60, 72), false)(toneState);
+  const Keys25 = (toneState: PlaybackState) =>
+    Keys(range(53, 78), false)(toneState);
+  const Keys32 = (toneState: PlaybackState) =>
+    Keys(range(48, 80), false)(toneState);
+  const Keys42 = (toneState: PlaybackState) =>
+    Keys(range(43, 85), false)(toneState);
+  const Keys88 = (toneState: PlaybackState) => Keys(range(21, 109))(toneState);
+
+  const pressKey = (e: any) => {
+    e.preventDefault();
+    const dataset = e.target.dataset;
+    if (!dataset.keyNum) return;
+    dataset.active = true;
+    synth?.triggerAttack(toNote(dataset.keyNum), now());
   };
+  const releaseKey = (e: any) => {
+    e.preventDefault();
+    const dataset = e.target.dataset;
+    if (!dataset.keyNum) return;
+    dataset.active = false;
+    synth?.triggerRelease(toNote(dataset.keyNum));
+  };
+  const pressKeyDragging = (e: any) => dragging && pressKey(e);
+  const releaseKeyDragging = (e: any) => dragging && releaseKey(e);
 
-  const Keys12 = Keys(range(60, 72), false);
-  const Keys40 = Keys(range(45, 85));
-  const Keys64 = Keys(range(33, 97));
-  const Keys88 = Keys(range(21, 109));
+  useEffect(() => {
+    document.addEventListener("mousedown", pointerdownHandler);
+    document.addEventListener("mouseup", pointerupHandler);
+    document.addEventListener("mousemove", disableScroll, { passive: false });
+    return () => {
+      document.removeEventListener("mousedown", pointerdownHandler);
+      document.removeEventListener("mouseup", pointerupHandler);
+      document.removeEventListener("mousemove", disableScroll);
+    };
+  }, []);
 
   return (
     <div
       className="the-keyboard el-stack"
       onMouseDown={pressKey}
-      onMouseOver={(e: any) => dragging && pressKey(e)}
+      onMouseOver={pressKeyDragging}
       onMouseUp={releaseKey}
-      onMouseOut={(e: any) => dragging && releaseKey(e)}
+      onMouseOut={releaseKeyDragging}
       onTouchStart={pressKey}
       onTouchEnd={releaseKey}
     >
       <BaseMediaQuery
         mqComponents={{
-          "not all and (min-width: 600px)": Keys12,
-          "(min-width: 600px)": Keys40,
-          "(min-width: 960px)": Keys64,
-          "(min-width: 1280px)": Keys88,
+          "not all and (min-width: 640px)": Keys12(toneState),
+          "(min-width: 640px)": Keys25(toneState),
+          "(min-width: 768px)": Keys32(toneState),
+          "(min-width: 1024px)": Keys42(toneState),
+          "(min-width: 1280px)": Keys88(toneState),
         }}
       />
     </div>
