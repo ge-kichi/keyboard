@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/keyboard/static/css/main.e77ec773.chunk.css",
-    "main.js": "/keyboard/static/js/main.79c3e407.chunk.js",
-    "main.js.map": "/keyboard/static/js/main.79c3e407.chunk.js.map",
+    "main.js": "/keyboard/static/js/main.488d2f34.chunk.js",
+    "main.js.map": "/keyboard/static/js/main.488d2f34.chunk.js.map",
     "runtime-main.js": "/keyboard/static/js/runtime-main.6d7a6556.js",
     "runtime-main.js.map": "/keyboard/static/js/runtime-main.6d7a6556.js.map",
     "static/css/2.052db6ca.chunk.css": "/keyboard/static/css/2.052db6ca.chunk.css",
-    "static/js/2.2deb4a62.chunk.js": "/keyboard/static/js/2.2deb4a62.chunk.js",
-    "static/js/2.2deb4a62.chunk.js.map": "/keyboard/static/js/2.2deb4a62.chunk.js.map",
+    "static/js/2.9588a5ee.chunk.js": "/keyboard/static/js/2.9588a5ee.chunk.js",
+    "static/js/2.9588a5ee.chunk.js.map": "/keyboard/static/js/2.9588a5ee.chunk.js.map",
     "static/js/3.43a915ba.chunk.js": "/keyboard/static/js/3.43a915ba.chunk.js",
     "static/js/3.43a915ba.chunk.js.map": "/keyboard/static/js/3.43a915ba.chunk.js.map",
     "index.html": "/keyboard/index.html",
     "static/css/2.052db6ca.chunk.css.map": "/keyboard/static/css/2.052db6ca.chunk.css.map",
     "static/css/main.e77ec773.chunk.css.map": "/keyboard/static/css/main.e77ec773.chunk.css.map",
-    "static/js/2.2deb4a62.chunk.js.LICENSE.txt": "/keyboard/static/js/2.2deb4a62.chunk.js.LICENSE.txt"
+    "static/js/2.9588a5ee.chunk.js.LICENSE.txt": "/keyboard/static/js/2.9588a5ee.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6d7a6556.js",
     "static/css/2.052db6ca.chunk.css",
-    "static/js/2.2deb4a62.chunk.js",
+    "static/js/2.9588a5ee.chunk.js",
     "static/css/main.e77ec773.chunk.css",
-    "static/js/main.79c3e407.chunk.js"
+    "static/js/main.488d2f34.chunk.js"
   ]
 }
